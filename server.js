@@ -52,8 +52,6 @@ function calculatePowerFactor(realPower, voltage, current) {
     const apparentPower = parsedVoltage * parsedCurrent;
     return parsedRealPower / apparentPower;
 }
-         
-
 
 // Periodically fetch and store data every 30 seconds
 setInterval(async () => {
@@ -83,11 +81,11 @@ setInterval(async () => {
                 'Token': JSON.stringify({ version, client, language, timestamp, uid, token })
             }
         });
-        
+
         const dateFromDB = new Date();  
-       // Get the current time in SLST (UTC+05:30)
-            const localDate = moment(dateFromDB).tz('Asia/Colombo').format('YYYY-MM-DD HH:mm:ss');  // Convert to UTC+05:30
-        
+        // Get the current time in SLST (UTC+05:30)
+        const localDate = moment(dateFromDB).tz('Asia/Colombo').format('YYYY-MM-DD HH:mm:ss');  // Convert to UTC+05:30
+
         console.log('Local Date:', localDate);
 
         // Extract specific inverter data
@@ -95,11 +93,10 @@ setInterval(async () => {
         const realPower = inverter.output_power;
         const voltage = inverter.grid_voltage;
         const current = inverter.output_current;
-        
+
         // Calculate power factor
         const powerFactor = calculatePowerFactor(realPower, voltage, current);
-        
-        
+
         // Extract specific inverter data from the response
         const inverterData = {
             date: localDate,
@@ -122,7 +119,6 @@ setInterval(async () => {
             charge_current_limit: inverter.charge_current_limit,
             discharge_current_limit: inverter.discharge_current_limit,
             power_factor: powerFactor
-        
         };
 
         // Save data to MongoDB
