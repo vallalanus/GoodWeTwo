@@ -133,6 +133,7 @@ setInterval(async () => {
 }, 30000); // 30 seconds interval
 
 app.get('/', (req, res) => {
+    console.log("good we two is running");
     res.send('GoodWe Two Inverter Backend Running');
 }); 
 
