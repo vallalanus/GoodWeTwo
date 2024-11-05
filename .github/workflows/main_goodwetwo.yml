@@ -60,3 +60,7 @@ jobs:
           slot-name: 'Production'
           package: .
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_BE5F3DC538D642CA87AFDF6BE8FE9497 }}
+
+
+      - name: Run server.js
+        run: node server.js
